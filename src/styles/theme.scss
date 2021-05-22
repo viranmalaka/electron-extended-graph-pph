@@ -1,0 +1,11 @@
+$background: #272727;
+$primary: #fac41a;
+
+* {
+  background: $background;
+  color: white;
+}
+
+.border {
+  border: 1px solid $primary;
+}

@@ -4,16 +4,6 @@
   "main": "public/electron.js",
   "homepage": "./",
   "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
-    "electron-is-dev": "^1.2.0",
-    "electron-squirrel-startup": "^1.0.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
-  },
   "scripts": {
     "dev": "concurrently -k \"BROWSER=none npm start\" \"npm:electron\"",
     "electron": "wait-on tcp:3000 && electron-forge start",
@@ -39,6 +29,17 @@
       "last 1 safari version"
     ]
   },
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "electron-is-dev": "^1.2.0",
+    "electron-squirrel-startup": "^1.0.0",
+    "node-sass": "^4.0.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1"
+  },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.52",
     "@electron-forge/maker-deb": "^6.0.0-beta.52",
@@ -48,6 +49,7 @@
     "concurrently": "^5.2.0",
     "electron": "^9.1.1",
     "electron-devtools-installer": "^3.1.1",
+    "prettier": "^2.3.0",
     "wait-on": "^5.1.0"
   },
   "config": {
