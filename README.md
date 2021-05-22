@@ -2,7 +2,12 @@
 
 **Installation:**
 
-```sh
-npm i && npm run dev
+to install dependency
+```shell script
+yarn
 ```
 
+to run in development mode.
+```shell script
+yarn dev
+```
