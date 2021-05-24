@@ -1,11 +1,125 @@
-$background: #272727;
-$primary: #fac41a;
+@import "variables";
+
+html body {
+  background: $background;
+}
 
 * {
-  background: $background;
+  background: transparent;
   color: white;
 }
 
 .border {
   border: 1px solid $primary;
+}
+
+.icon {
+  font-size: 20px;
+}
+
+.select-box {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  font-size: 18px;
+  color: $primary;
+
+  &__current {
+    position: relative;
+    box-shadow: 0 15px 30px -10px transparentize(#000, 0.9);
+    cursor: pointer;
+    outline: none;
+
+    &:focus {
+      & + .select-box__list {
+        opacity: 1;
+        animation-name: none;
+        top: 18px;
+
+        .select-box__option {
+          cursor: pointer;
+        }
+      }
+
+      .select-box__icon {
+        transform: translateY(-50%) rotate(180deg);
+      }
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    width: 20px;
+    font-size: 30px;
+    transition: 0.2s ease;
+    path {
+      color: $primary;
+    }
+  }
+
+  &__value {
+    display: flex;
+  }
+
+  &__input {
+    display: none;
+
+    &:checked + .select-box__input-text {
+      display: block;
+    }
+  }
+
+  &__input-text {
+    display: none;
+    width: 100%;
+    margin: 0;
+    padding: 7px;
+    background-color: $background;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  &__list {
+    position: absolute;
+    width: 100%;
+    padding: 0;
+    list-style: none;
+    opacity: 0;
+
+    // We need to use animation with delay.
+    // Otherwise the click event will not have time to run on label, because this element disapears immediately when .select-box__current element loses the focus.
+    // This delay will not be noticed because we set "opacity" to "0".
+    // We also use "animation-fill-mode: forwards" to make the list stay hidden.
+
+    animation-name: HideList;
+    animation-duration: 0.5s;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: step-start;
+    box-shadow: 0 15px 30px -10px transparentize($primary, 0.9);
+  }
+
+  &__option {
+    display: block;
+    padding: 7px;
+    background-color: $background;
+    border: 1px solid $primary;
+
+    &:hover,
+    &:focus {
+      color: #546c84;
+      background-color: #fbfbfb;
+    }
+  }
+}
+
+.button {
+  border: 1px solid $primary;
+  font-size: 20px;
+  padding: 5px 10px;
+  width: 100%;
 }
