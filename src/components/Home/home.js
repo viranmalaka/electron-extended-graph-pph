@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './home-style.scss';
 
 import {
@@ -16,8 +16,11 @@ import {
   MdChat,
   BiMessageCheck,
 } from 'react-icons/all';
+import GraphModal from '../graph-modal/GraphModal';
 
 const Home = () => {
+  const [modal, setModal] = useState(false);
+
   return (
     <div className="grid-container">
       <div className="Header">
@@ -136,7 +139,7 @@ const Home = () => {
           <div className="graph-area--title">Graph</div>
           <div className="graph-area--graph border">
             <div className="graph-expand-button">
-              <IoIosExpand />
+              <IoIosExpand className="expand-button" onClick={() => setModal(true)} />
             </div>
             <div className="graph-section">
               <div className="title">
@@ -197,6 +200,7 @@ const Home = () => {
           <span>UPDATE</span>
         </div>
       </div>
+      <GraphModal modal={modal} setModal={setModal} />
     </div>
   );
 };

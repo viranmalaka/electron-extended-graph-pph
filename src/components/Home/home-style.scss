@@ -139,7 +139,12 @@
   }
 }
 
-.MouseImage { grid-area: MouseImage; }
+.MouseImage { grid-area: MouseImage;
+  img {
+    width: 100%;
+    max-width: 400px;
+  }
+}
 
 .GraphArea {
   grid-area: GraphArea;
@@ -155,10 +160,12 @@
   .graph-area--graph {
     position: relative;
     .graph-expand-button {
-      position: absolute;
-      right: 15px;
-      top: 15px;
-      font-size: 40px;
+      .expand-button {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        font-size: 40px;
+      }
     }
     .title {
       display: flex;
@@ -184,7 +191,7 @@
     }
     .graph-section {
       .graph {
-        width: 320px;
+        max-width: 320px;
         height: 320px;
         border: 1px solid white;
         margin: 20px auto;
