@@ -17,6 +17,7 @@ import {
   BiMessageCheck,
 } from 'react-icons/all';
 import GraphModal from '../graph-modal/GraphModal';
+import TestGraph from '../graphs/test-graph';
 
 const Home = () => {
   const [modal, setModal] = useState(false);
@@ -147,7 +148,9 @@ const Home = () => {
                 <p>GRAPH</p>
                 <span>?</span>
               </div>
-              <div className="graph"></div>
+              <div className="graph">
+                <TestGraph height={300} width={300} />
+              </div>
             </div>
             <div className="info">
               <div className="title">
@@ -157,7 +160,7 @@ const Home = () => {
               <div className="info-content">
                 <div className="info-row">
                   <div className="info-key">
-                    <div className="blue-color"></div>
+                    <div className="blue-color" />
                   </div>
                   <div className="info-value">Signal that reaches the PC</div>
                 </div>

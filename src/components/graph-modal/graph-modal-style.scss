@@ -1,7 +1,141 @@
 @import "src/styles/variables";
 
 .react-modal {
-  max-width: 1200px;
-  width: 1200px;
-  margin: auto;
+  .close-icon {
+    float: right;
+    font-size: 40px;
+  }
+  .graph-container {
+    width: 90%;
+    margin: 40px auto;
+  }
+}
+.red-reset-button {
+  path {
+    color: red;
+  }
+}
+.graph-border {
+  border: 2px solid white;
+}
+
+.graph-controller {
+  display: flex;
+  width: 90%;
+  margin: 20px auto;
+
+  .buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 5px 5px;
+    grid-template-areas:
+    ". . ."
+    ". . ."
+    ". . .";
+    font-size: 20px;
+    flex-basis: 10%;
+  }
+
+  .vid {
+    border: 2px solid white;
+    flex-basis: 65%;
+    .vid-graph, .vid-reset {
+      div {
+        display: flex;
+        .icon {
+          border: 1px solid white;
+          background-color: rgba(255,255,255,0.2);
+          margin: 12px;
+          padding: 2px;
+          font-size: 20px;
+          &.red-reset-button {
+            border: none;
+            background-color: unset;
+          }
+        }
+        h1 {
+          display: inline;
+          font-size: 20px;
+          padding-left: 12px;
+        }
+      }
+      p {
+        padding-left: 60px;
+        padding-right: 20px;
+        padding-top: 0;
+        margin-top: 0;
+        font-weight: bold;
+      }
+
+    }
+  }
+  .info-container {
+    flex-basis: 25%;
+    padding-left: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 12px;
+    .info-row {
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 8px;
+      .info-key {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        div {
+          border: 2px solid white;
+          width: 30px;
+          height: 0;
+          margin-top: 7px;
+          &.blue-color {
+            border-color: #39a0d2;
+          }
+          &.yellow-color {
+            border-color: #f4c434;
+          }
+          &.pink-color {
+            border-color: #d04a93;
+          }
+        }
+      }
+      .info-value {
+        flex: 4;
+        text-align: left;
+      }
+    }
+  }
+}
+
+.split-graphs {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  img {
+    width: 100px;
+  }
+}
+
+.vid-table {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  .head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  .body {
+    display: flex;
+    flex-direction: column;
+    .row {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
 }

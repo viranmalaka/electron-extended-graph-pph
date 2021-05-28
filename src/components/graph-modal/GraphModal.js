@@ -1,39 +1,43 @@
 import React, { useState } from 'react';
 import ReactModal from 'react-modal';
 import './graph-modal-style.scss';
+import { BiCollapse } from 'react-icons/all';
+import FullWidthGraph from './graph-area/full-width-graph';
+import SplitGraph from './graph-area/split-graph';
+import GraphController from './graph-controller';
 
 const GraphModal = ({ modal, setModal }) => {
+  const [isSplitMode, setSplitMode] = useState(false);
+
   return (
     <div>
       <ReactModal
         style={{
           overlay: {
             position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
             backgroundColor: 'rgba(34, 34, 34, 0.75)',
           },
           content: {
-            position: 'absolute',
-            top: '40px',
-            left: '40px',
-            right: '40px',
-            bottom: '40px',
             border: '1px solid #fac41a',
             background: '#272727',
             overflow: 'auto',
-            WebkitOverflowScrolling: 'touch',
+            padding: '5px',
             outline: 'none',
-            padding: '20px',
+            maxWidth: '1200px',
+            width: '88vw',
+            height: '72vh',
           },
         }}
         isOpen={modal}
         contentLabel="Minimal Modal Example"
         className="react-modal"
       >
-        <button onClick={() => setModal(false)}>Close Modal</button>
+        <BiCollapse className="close-icon" onClick={() => setModal(false)} />
+        <div className="graph-container">{isSplitMode ? <FullWidthGraph /> : <SplitGraph />}</div>
+        <GraphController setGraphMode={setSplitMode} mode={isSplitMode} />
       </ReactModal>
     </div>
   );
