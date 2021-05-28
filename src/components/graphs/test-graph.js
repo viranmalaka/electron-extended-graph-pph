@@ -1,59 +1,66 @@
 import React, { Component } from 'react';
-import { ResponsiveLine, Line, LineDefaultProps } from '@nivo/line';
+import { Line } from '@nivo/line';
 import * as time from 'd3-time';
-
-const generateFakeTimeSeries = (offset = 0) => {
-  return {
-    x: time.timeSecond.offset(Date.now(), offset * 30),
-    y: 10 + Math.round(Math.random() * 100),
-  };
-};
-
-const commonProperties = {
-  animate: false,
-  enableSlices: 'x',
-};
+import GraphDataGenerator from '../../service/graph-data-generator';
 
 class RealTimeChart extends Component {
+  dataGenerator = null;
+
   constructor(props) {
     super(props);
-
-    const date = new Date();
-    date.setMinutes(0);
-    date.setSeconds(0);
-    date.setMilliseconds(0);
-
+    this.dataGenerator = GraphDataGenerator.getInstance();
     this.state = {
-      dataA: Array(100)
-        .fill({})
-        .map((_, i) => generateFakeTimeSeries(i - 100)),
+      dataA: this.dataGenerator.getData(),
+      startIndex: 0,
+      length: 100,
     };
   }
 
   componentDidMount() {
-    this.timer = setInterval(this.next, 1000);
+    this.dataGenerator.startGenerateStream(100);
+    this.dataGenerator.subscribe((data) => {
+      this.setState({ dataA: data, startIndex: this.state.startIndex + 1 });
+    });
   }
 
   componentWillUnmount() {
-    clearInterval(this.timer);
+    this.dataGenerator.stopStream();
   }
 
-  next = () => {
-    const dataA = this.state.dataA.slice(1);
-    dataA.push(generateFakeTimeSeries());
-
-    this.setState({ dataA });
+  zoomIn = () => {
+    const { length } = this.state;
+    console.log(length);
+    if (length > 19) {
+      this.setState({ length: length - 10 });
+    }
+  };
+  zoomOut = () => {
+    const { length } = this.state;
+    console.log(length);
+    if (length < 441) {
+      this.setState({ length: length + 10 });
+    }
   };
 
   render() {
-    const { dataA } = this.state;
+    const { dataA, startIndex, length } = this.state;
+
+    let graphData;
+    if (startIndex + length < dataA.length) {
+      graphData = dataA.slice(startIndex, startIndex + length);
+    } else {
+      if (dataA.length < length) {
+        graphData = dataA;
+      } else {
+        graphData = dataA.slice(dataA.length - length);
+      }
+    }
 
     return (
       <div>
         <Line
           {...this.props}
-          {...commonProperties}
-          data={[{ id: 'A', data: dataA, color: '#fac41a' }]}
+          data={[{ id: 'A', data: graphData, color: '#fac41a' }]}
           xScale={{ type: 'time' }}
           yScale={{ type: 'linear', max: 100 }}
           axisBottom={{
@@ -66,7 +73,7 @@ class RealTimeChart extends Component {
           motionStiffness={120}
           motionDamping={50}
           isInteractive={false}
-          enableSlices={false}
+          enableSlices="x"
           useMesh={true}
           colors={(d) => d.color}
           theme={{

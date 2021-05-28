@@ -13,7 +13,7 @@ import VidGraph from './vid-components/vid-graph';
 import VidReset from './vid-components/vid-reset';
 import VidTable from './vid-components/vid-table';
 
-const GraphController = ({ setGraphMode, mode }) => {
+const GraphController = ({ setGraphMode, mode, graphRef }) => {
   const [vidMode, setVidMode] = useState('graph');
 
   useEffect(() => {
@@ -26,8 +26,8 @@ const GraphController = ({ setGraphMode, mode }) => {
         <FaPlay />
         <IoPauseSharp />
         <div />
-        <ImZoomIn />
-        <ImZoomOut />
+        <ImZoomIn onClick={() => graphRef.current.zoomIn()} />
+        <ImZoomOut onClick={() => graphRef.current.zoomOut()} />
         <div />
         <MdTrendingUp onClick={() => setGraphMode(!mode)} />
         <MdTrendingDown onClick={() => setGraphMode(!mode)} />

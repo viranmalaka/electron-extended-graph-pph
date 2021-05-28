@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import ReactModal from 'react-modal';
 import './graph-modal-style.scss';
 import { BiCollapse } from 'react-icons/all';
@@ -8,6 +8,8 @@ import GraphController from './graph-controller';
 
 const GraphModal = ({ modal, setModal }) => {
   const [isSplitMode, setSplitMode] = useState(false);
+
+  const graphRef = useRef();
 
   return (
     <div>
@@ -36,8 +38,8 @@ const GraphModal = ({ modal, setModal }) => {
         className="react-modal"
       >
         <BiCollapse className="close-icon" onClick={() => setModal(false)} />
-        <div className="graph-container">{isSplitMode ? <FullWidthGraph /> : <SplitGraph />}</div>
-        <GraphController setGraphMode={setSplitMode} mode={isSplitMode} />
+        <div className="graph-container">{!isSplitMode ? <FullWidthGraph graphRef={graphRef} /> : <SplitGraph />}</div>
+        <GraphController setGraphMode={setSplitMode} mode={isSplitMode} graphRef={graphRef} />
       </ReactModal>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import './home-style.scss';
 
 import {
@@ -148,9 +148,7 @@ const Home = () => {
                 <p>GRAPH</p>
                 <span>?</span>
               </div>
-              <div className="graph">
-                <TestGraph height={300} width={300} />
-              </div>
+              <div className="graph">{!modal && <TestGraph height={300} width={300} />}</div>
             </div>
             <div className="info">
               <div className="title">
