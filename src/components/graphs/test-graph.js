@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import { Line } from '@nivo/line';
 import * as time from 'd3-time';
 import GraphDataGenerator from '../../service/graph-data-generator';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 class RealTimeChart extends Component {
   dataGenerator = null;
+  scrollRef = null;
+  tempScrollData = {};
 
   constructor(props) {
     super(props);
@@ -44,23 +47,44 @@ class RealTimeChart extends Component {
 
   render() {
     const { dataA, startIndex, length } = this.state;
+    const containerWidth = 1076;
 
-    let graphData;
+    let graphData, a, b;
     if (startIndex + length < dataA.length) {
-      graphData = dataA.slice(startIndex, startIndex + length);
+      a = startIndex;
+      b = startIndex + length;
     } else {
       if (dataA.length < length) {
-        graphData = dataA;
+        a = 0;
+        b = dataA.length;
       } else {
-        graphData = dataA.slice(dataA.length - length);
+        a = dataA.length - length;
+        b = dataA.length;
       }
+    }
+    graphData = dataA.slice(a, b);
+
+    if (this.scrollRef) {
+      this.scrollRef.scrollLeft((a * containerWidth) / length);
+    }
+
+    const data = [{ id: 'A', data: graphData, color: '#fac41a' }];
+    if (this.props.threshold) {
+      data.push({
+        id: 'B',
+        data: [
+          { x: graphData[0].x, y: this.props.thresholdValue },
+          { x: graphData[graphData.length - 1].x, y: this.props.thresholdValue },
+        ],
+        color: '#ff00ff',
+      });
     }
 
     return (
       <div>
         <Line
           {...this.props}
-          data={[{ id: 'A', data: graphData, color: '#fac41a' }]}
+          data={data}
           xScale={{ type: 'time' }}
           yScale={{ type: 'linear', max: 100 }}
           axisBottom={{

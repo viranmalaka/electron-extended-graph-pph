@@ -25,7 +25,7 @@ const Home = () => {
   return (
     <div className="grid-container">
       <div className="Header">
-        <img className="header--image" src="/logo.png" />
+        <img className="header--image" src="logo.png" />
       </div>
       <div className="Content-area">
         <div className="ActionColumn">
@@ -134,7 +134,7 @@ const Home = () => {
           </div>
         </div>
         <div className="MouseImage">
-          <img src="/mouse.png" />
+          <img src="mouse.png" />
         </div>
         <div className="GraphArea">
           <div className="graph-area--title">Graph</div>
@@ -188,7 +188,7 @@ const Home = () => {
         </div>
       </div>
       <div className="Footer">
-        <img src="/endgame-gear.png" className="endgame-gear-icon" />
+        <img src="endgame-gear.png" className="endgame-gear-icon" />
 
         <div className="version-info">
           <p>firmware version: ver:32323232323</p>
