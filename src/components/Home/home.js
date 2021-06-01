@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import './home-style.scss';
+import './home-style.css';
 
 import {
   BiDownArrow,

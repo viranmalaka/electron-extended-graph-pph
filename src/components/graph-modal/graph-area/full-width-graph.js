@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import RealTimeChart from '../../graphs/test-graph';
 import ReactSlider from 'react-slider';
 
-import './slider.scss';
+import './slider.css';
 
 const FullWidthGraph = ({ graphRef }) => {
   const [tLine, setTLine] = useState(80);

@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import ReactModal from 'react-modal';
-import './graph-modal-style.scss';
+import './graph-modal-style.css';
 import { BiCollapse } from 'react-icons/all';
 import FullWidthGraph from './graph-area/full-width-graph';
 import SplitGraph from './graph-area/split-graph';

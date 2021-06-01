@@ -1,0 +1,366 @@
+.react-modal .close-icon {
+    float: right;
+    font-size: 40px;
+}
+.react-modal .graph-container {
+    width: 90%;
+    margin: 40px auto;
+}
+.red-reset-button path {
+    color: red;
+}
+.graph-border {
+    border: 2px solid white;
+}
+.graph-controller {
+    display: flex;
+    width: 90%;
+    margin: 20px auto;
+}
+.graph-controller .buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 5px 5px;
+    grid-template-areas: ". . ." ". . ." ". . .";
+    font-size: 20px;
+    flex-basis: 10%;
+}
+.graph-controller .vid {
+    border: 2px solid white;
+    flex-basis: 65%;
+}
+.graph-controller .vid .vid-graph div, .graph-controller .vid .vid-reset div {
+    display: flex;
+}
+.graph-controller .vid .vid-graph div .icon, .graph-controller .vid .vid-reset div .icon {
+    border: 1px solid white;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 12px;
+    padding: 2px;
+    font-size: 20px;
+}
+.graph-controller .vid .vid-graph div .icon.red-reset-button, .graph-controller .vid .vid-reset div .icon.red-reset-button {
+    border: none;
+    background-color: unset;
+}
+.graph-controller .vid .vid-graph div h1, .graph-controller .vid .vid-reset div h1 {
+    display: inline;
+    font-size: 20px;
+    padding-left: 12px;
+}
+.graph-controller .vid .vid-graph p, .graph-controller .vid .vid-reset p {
+    padding-left: 60px;
+    padding-right: 20px;
+    padding-top: 0;
+    margin-top: 0;
+    font-weight: bold;
+}
+.graph-controller .info-container {
+    flex-basis: 25%;
+    padding-left: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+.graph-controller .info-container .info-row {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 8px;
+}
+.graph-controller .info-container .info-row .info-key {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+.graph-controller .info-container .info-row .info-key div {
+    border: 2px solid white;
+    width: 30px;
+    height: 0;
+    margin-top: 7px;
+}
+.graph-controller .info-container .info-row .info-key div.blue-color {
+    border-color: #39a0d2;
+}
+.graph-controller .info-container .info-row .info-key div.yellow-color {
+    border-color: #f4c434;
+}
+.graph-controller .info-container .info-row .info-key div.pink-color {
+    border-color: #d04a93;
+}
+.graph-controller .info-container .info-row .info-value {
+    flex: 4;
+    text-align: left;
+}
+.split-graphs {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.split-graphs img {
+    width: 100px;
+}
+.vid-table {
+@import "src/styles/variables";
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+.vid-table .grid-container {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 2fr 10fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas: "Header" "Content-area" "Footer";
+}
+.vid-table .Header {
+    grid-area: Header;
+    text-align: center;
+    padding-top: 20px;
+}
+.vid-table .Header .header--image {
+    height: 100px;
+}
+.vid-table .Content-area {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0px 10px;
+    grid-template-areas: "ActionColumn MouseImage GraphArea" "ActionColumn MouseImage GraphArea";
+    grid-area: Content-area;
+}
+.vid-table .ActionColumn {
+    display: grid;
+    grid-template-columns: 3.5fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas: "ActionArea ThreeIndicatorArea";
+    grid-area: ActionColumn;
+}
+.vid-table .ActionArea {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 3.5fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas: "ActionSelector" "ProfileSelector";
+    grid-area: ActionArea;
+}
+.vid-table .ProfileSelector {
+    grid-area: ProfileSelector;
+    padding-left: 90px;
+}
+.vid-table .ProfileSelector .profile-selector-buttons {
+    padding-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+.vid-table .ActionSelector {
+    grid-area: ActionSelector;
+    padding-left: 65px;
+    padding-top: 25px;
+}
+.vid-table .ActionSelector .actions-list--item {
+    display: flex;
+    flex-direction: row;
+}
+.vid-table .ActionSelector .actions-list--item .action-list--number {
+    font-size: 25px;
+    padding: 5px 0;
+    flex-basis: 30px;
+}
+.vid-table .ActionSelector .actions-list--item .action-list--name {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 20px;
+    text-transform: uppercase;
+    line-height: 25px;
+    padding: 5px 0;
+    background: #343434;
+}
+.vid-table .ActionSelector .actions-list--item .action-list--name.first-two {
+    margin-bottom: 4px;
+    background: #272727;
+}
+.vid-table .ThreeIndicatorArea {
+    padding: 80px 10px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.vid-table .ThreeIndicatorArea .indicator {
+    border: 1px solid #fac41a;
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+    margin-bottom: 10px;
+}
+.vid-table .ThreeIndicatorArea .indicator.mouse-icon {
+    border-style: double;
+    border-width: 4px;
+    margin-left: -2px;
+}
+.vid-table .ThreeIndicatorArea .indicator.mouse-icon svg {
+    font-size: 30px;
+    margin-top: 5px;
+}
+.vid-table .ThreeIndicatorArea .indicator .play-pause {
+    margin-top: 13px;
+    margin-bottom: -5px;
+}
+.vid-table .ThreeIndicatorArea .indicator .play-pause svg {
+    font-size: 20px;
+}
+.vid-table .ThreeIndicatorArea .indicator .play-pause svg:first-child {
+    margin-right: -7px;
+}
+.vid-table .ThreeIndicatorArea .indicator.crosshair svg {
+    font-size: 33px;
+    margin-top: 3px;
+}
+.vid-table .ThreeIndicatorArea .indicator p {
+    font-size: 8px;
+    margin: 0;
+}
+.vid-table .MouseImage {
+    grid-area: MouseImage;
+}
+.vid-table .MouseImage img {
+    width: 100%;
+    max-width: 400px;
+}
+.vid-table .GraphArea {
+    grid-area: GraphArea;
+    padding-right: 40px;
+}
+.vid-table .GraphArea .graph-area--title {
+    padding-top: 10px;
+    text-transform: uppercase;
+    font-size: 30px;
+    text-align: center;
+}
+.vid-table .GraphArea .graph-area--graph {
+    position: relative;
+}
+.vid-table .GraphArea .graph-area--graph .graph-expand-button .expand-button {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 40px;
+}
+.vid-table .GraphArea .graph-area--graph .title {
+    display: flex;
+    flex-direction: row;
+    font-size: 20px;
+}
+.vid-table .GraphArea .graph-area--graph .title .down-arrow {
+    margin: 15px;
+}
+.vid-table .GraphArea .graph-area--graph .title .down-arrow path {
+    color: #fac41a;
+}
+.vid-table .GraphArea .graph-area--graph .title p {
+    margin: 15px 2px;
+}
+.vid-table .GraphArea .graph-area--graph .title span {
+    margin-top: 15px;
+    font-size: 12px;
+    border: 1px solid white;
+    width: 12px;
+    height: 12px;
+    text-align: center;
+}
+.vid-table .GraphArea .graph-area--graph .graph-section .graph {
+    max-width: 320px;
+    height: 320px;
+    border: 1px solid white;
+    margin: 20px auto;
+}
+.vid-table .GraphArea .graph-area--graph .info .info-content {
+    padding-left: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 15px;
+}
+.vid-table .GraphArea .graph-area--graph .info .info-content .info-row {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 8px;
+}
+.vid-table .GraphArea .graph-area--graph .info .info-content .info-row .info-key {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+.vid-table .GraphArea .graph-area--graph .info .info-content .info-row .info-key div {
+    border: 2px solid white;
+    width: 30px;
+    height: 0;
+    margin-top: 7px;
+}
+.vid-table .GraphArea .graph-area--graph .info .info-content .info-row .info-key div.blue-color {
+    border-color: #39a0d2;
+}
+.vid-table .GraphArea .graph-area--graph .info .info-content .info-row .info-key div.yellow-color {
+    border-color: #f4c434;
+}
+.vid-table .GraphArea .graph-area--graph .info .info-content .info-row .info-key div.pink-color {
+    border-color: #d04a93;
+}
+.vid-table .GraphArea .graph-area--graph .info .info-content .info-row .info-value {
+    flex: 4;
+    text-align: left;
+}
+.vid-table .Footer {
+    grid-area: Footer;
+    background: #fac41a;
+    display: flex;
+    justify-content: space-between;
+}
+.vid-table .Footer .endgame-gear-icon {
+    height: 45px;
+    align-self: center;
+    padding-left: 20px;
+}
+.vid-table .Footer .version-info {
+    font-size: 7px;
+    align-self: flex-end;
+    padding-bottom: 10px;
+}
+.vid-table .Footer .version-info p {
+    color: black;
+    margin: 0;
+}
+.vid-table .Footer .right-icons {
+    font-size: 25px;
+    align-self: center;
+    display: flex;
+}
+.vid-table .Footer .right-icons path, .vid-table .Footer .right-icons span {
+    color: black;
+}
+.vid-table .Footer .right-icons span {
+    align-self: center;
+    margin: 0 20px 0 10px;
+    font-size: 20px;
+}
+.vid-table .Footer .right-icons svg {
+    margin: 10px;
+}
+.vid-table .head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.vid-table .body {
+    display: flex;
+    flex-direction: column;
+}
+.vid-table .body .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

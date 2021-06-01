@@ -1,0 +1,16 @@
+.vertical-slider {
+    left: -20px;
+}
+.example-thumb {
+    position: absolute;
+    touch-action: none;
+    z-index: 2;
+    bottom: 165px;
+}
+.example-thumb.example-thumb-0 {
+    color: red;
+    font-size: 1px;
+    border-style: solid;
+    border-width: 12.5px 0 12.5px 15px;
+    border-color: transparent transparent transparent #f0f;
+}
