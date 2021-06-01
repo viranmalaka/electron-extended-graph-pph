@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import './home-style.css';
+import './home-style.scss';
 
 import {
   BiDownArrow,
@@ -148,7 +148,7 @@ const Home = () => {
                 <p>GRAPH</p>
                 <span>?</span>
               </div>
-              <div className="graph">{!modal && <TestGraph height={300} width={300} />}</div>
+              <div className="graph">{!modal && <TestGraph height={320} width={320} />}</div>
             </div>
             <div className="info">
               <div className="title">

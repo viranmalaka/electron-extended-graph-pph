@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Line } from '@nivo/line';
 import * as time from 'd3-time';
 import GraphDataGenerator from '../../service/graph-data-generator';
-import { Scrollbars } from 'react-custom-scrollbars';
+import Scrollbar from './scrollbar';
+const containerWidth = 1080;
 
 class RealTimeChart extends Component {
   dataGenerator = null;
@@ -16,6 +17,7 @@ class RealTimeChart extends Component {
       dataA: this.dataGenerator.getData(),
       startIndex: 0,
       length: 100,
+      scrollPosition: 0,
     };
   }
 
@@ -32,22 +34,26 @@ class RealTimeChart extends Component {
 
   zoomIn = () => {
     const { length } = this.state;
-    console.log(length);
     if (length > 19) {
       this.setState({ length: length - 10 });
     }
   };
   zoomOut = () => {
     const { length } = this.state;
-    console.log(length);
     if (length < 441) {
       this.setState({ length: length + 10 });
     }
   };
 
+  onScroll = (scrollLeft) => {
+    const { length, dataA } = this.state;
+    let startIndex = dataA.length - length + (scrollLeft / containerWidth) * length;
+    if (startIndex < 0) startIndex = 0;
+    this.setState({ startIndex });
+  };
+
   render() {
     const { dataA, startIndex, length } = this.state;
-    const containerWidth = 1076;
 
     let graphData, a, b;
     if (startIndex + length < dataA.length) {
@@ -62,14 +68,10 @@ class RealTimeChart extends Component {
         b = dataA.length;
       }
     }
+
     graphData = dataA.slice(a, b);
-
-    if (this.scrollRef) {
-      this.scrollRef.scrollLeft((a * containerWidth) / length);
-    }
-
     const data = [{ id: 'A', data: graphData, color: '#fac41a' }];
-    if (this.props.threshold) {
+    if (this.props.threshold && graphData[0]) {
       data.push({
         id: 'B',
         data: [
@@ -81,7 +83,7 @@ class RealTimeChart extends Component {
     }
 
     return (
-      <div>
+      <div style={{ position: 'relative' }}>
         <Line
           {...this.props}
           data={data}
@@ -109,6 +111,13 @@ class RealTimeChart extends Component {
             },
           }}
         />
+        {this.props.showScroll && (
+          <Scrollbar
+            maxWidth={containerWidth}
+            contentWidth={dataA.length * Math.ceil(containerWidth / length)}
+            onScroll={this.onScroll}
+          />
+        )}
       </div>
     );
   }

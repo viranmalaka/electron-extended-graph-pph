@@ -1,3 +1,59 @@
-.ps__rail-x {
-  opacity: 0.3;
+.scrollbar {
+  &.sb_container {
+    width: 100%;
+    height: 40px;
+    background-color: transparent;
+    overflow-x: auto;
+    direction: rtl;
+    position: absolute;
+    bottom: 10px;
+
+    .content {
+      height: 1px;
+      background-color: transparent;
+    }
+
+    &::-webkit-scrollbar {
+      width: 15px;
+    }
+
+    &::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      background-color: #ffffff50;
+
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #ffffffaa;
+      border-radius: 5px;
+      border: none;
+    }
+
+    /* Buttons */
+    &::-webkit-scrollbar-button:single-button {
+      display: block;
+      background-color: transparent;
+      border-style: solid;
+      height: 13px;
+      width: 16px;
+    }
+    /* Up */
+    &::-webkit-scrollbar-button:single-button:horizontal:decrement {
+      border-width: 8px 8px 8px 0;
+      border-color: transparent white transparent transparent;
+    }
+
+    &::-webkit-scrollbar-button:single-button:horizontal:decrement:hover {
+      border-color: transparent transparent white transparent;
+    }
+    /* Down */
+    &::-webkit-scrollbar-button:single-button:horizontal:increment {
+      border-width: 8px 0 8px 8px;
+      border-color: transparent transparent transparent white;
+    }
+
+    &::-webkit-scrollbar-button:vertical:single-button:increment:hover {
+      border-color: white transparent transparent transparent;
+    }
+  }
 }
